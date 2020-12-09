@@ -25,31 +25,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //initRecyclerView()
-        viewModel = ViewModelProvider(this).get(CoinListViewModel::class.java)
-        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView.adapter = coinsListAdapter
-
+        initRecyclerView()
 
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getData()
         }
 
         viewModel.coins.observe(this, Observer { coinsList ->
-           // Log.e("TAG", "$coinsList")
-            for(i in 0 until coinsList.size){
-
-            }
+            Log.e("TAG", "$coinsList")
         })
+    }
+
+    fun initRecyclerView() {
+        viewModel = ViewModelProvider(this).get(CoinListViewModel::class.java)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.adapter = coinsListAdapter
     }
 
     override fun onStart() {
         super.onStart()
         observeLiveData()
     }
-    private fun observeLiveData(){
-        viewModel.coins.observe(this, Observer { data->
-            data?.let{
+
+    private fun observeLiveData() {
+        viewModel.coins.observe(this, Observer { data ->
+            data?.let {
                 recyclerView.visibility = View.VISIBLE
                 coinsListAdapter.updateDataList(data)
             }
