@@ -11,17 +11,17 @@ import com.example.cryptocurrencytracker.services.RetrofitInstance
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class CoinListViewModel: ViewModel() {
+class CoinListViewModel : ViewModel() {
     private var _coins = MutableLiveData<Coin>()
     val coins: LiveData<Coin>
-    get() = _coins
+        get() = _coins
 
-    fun getData(){
+    fun getData() {
         viewModelScope.launch {
-            try{
+            try {
                 _coins.value = RetrofitInstance.retrofitInstance.getCoinList()
-            }catch (e: Exception){
-                Log.e(TAG,"${e.message}")
+            } catch (e: Exception) {
+                Log.e(TAG, "${e.message}")
             }
         }
     }
