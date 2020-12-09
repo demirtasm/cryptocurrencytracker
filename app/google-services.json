@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "728743285907",
+    "firebase_url": "https://fir-testlab-61aaa.firebaseio.com",
+    "project_id": "fir-testlab-61aaa",
+    "storage_bucket": "fir-testlab-61aaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728743285907:android:94053971c076e04df96966",
+        "android_client_info": {
+          "package_name": "com.example.cryptocurrencytracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728743285907-88n0kj0cg86ttutde2nilipfega32nrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9OHv6PuKsmdvrQFdrTvhnaLmA0GGA7ZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728743285907-88n0kj0cg86ttutde2nilipfega32nrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

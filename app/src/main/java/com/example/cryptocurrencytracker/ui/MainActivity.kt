@@ -1,4 +1,4 @@
-package com.example.cryptocurrencytracker
+package com.example.cryptocurrencytracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.AdapterListUpdateCallback
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cryptocurrencytracker.R
 import com.example.cryptocurrencytracker.adapter.CoinListAdapter
 import com.example.cryptocurrencytracker.viewmodel.CoinListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
