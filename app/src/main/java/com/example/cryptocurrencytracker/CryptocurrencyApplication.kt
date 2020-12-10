@@ -12,10 +12,10 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
-class FirebaseApplication : Application(), KodeinAware {
+class CryptocurrencyApplication : Application(), KodeinAware {
 
     override val kodein = Kodein.lazy {
-        import(androidXModule(this@FirebaseApplication))
+        import(androidXModule(this@CryptocurrencyApplication))
 
         bind() from singleton { FirebaseSource() }
         bind() from singleton { FirebaseUserRepository(instance()) }

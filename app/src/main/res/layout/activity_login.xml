@@ -11,7 +11,7 @@
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#008577"
+        android:background="@color/colorBackground"
         android:orientation="vertical"
         tools:context=".ui.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -28,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
-                android:text="Account Login"
-                android:textColor="#fff"
+                android:text="@string/accountLogin"
+                android:textColor="@color/cardBackground"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
 
@@ -40,7 +40,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="70dp"
-                android:background="#fff"
+                android:background="@color/cardBackground"
                 android:elevation="4dp"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -54,7 +54,9 @@
 
                     <TextView
                         android:labelFor="@id/text_email"
-                        android:text="email"
+                        android:text="@string/email"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -63,38 +65,35 @@
                         android:id="@+id/text_email"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
                         android:drawablePadding="10dp"
+                        android:hint="demirtas@hotmail.com"
+                        android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:text="@={viewmodel.email}"
-                        android:layout_marginBottom="10dp"
-                        android:hint="john@gmail.com"
-                        android:inputType="textEmailAddress"/>
+                        android:textColorHint="@color/colorBackground"
+                        android:textColorLink="@color/colorPrimary" />
 
                     <TextView
                         android:labelFor="@id/edit_text_password"
-                        android:text="password"
+                        android:text="@string/password"
                         android:fontFamily="sans-serif-light"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <EditText
-                        android:drawablePadding="10dp"
+                        android:id="@+id/edit_text_password"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
                         android:singleLine="true"
                         android:text="@={viewmodel.password}"
-                        android:id="@+id/edit_text_password"
-                        android:hint="Password"
-                        android:inputType="textPassword"/>
-
-
-                    <TextView
-                        android:id="@+id/text_view_forget_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:paddingTop="5dp"
-                        android:text="Forgot Password?"/>
+                        android:textColorHint="@color/colorBackground"
+                        android:textColorLink="@color/colorPrimary" />
 
 
                     <Button
@@ -103,21 +102,24 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
                         android:onClick="@{()-> viewmodel.login()}"
-                        android:background="#d67601"
-                        android:text="Log in"
+                        android:text="@string/login"
+                        android:background="@color/colorBackground"
                         android:textAllCaps="false"
-                        android:textColor="#fff"
+                        android:textColor="@color/cardBackground"
                         android:textSize="18sp"/>
 
-                    <TextView
-                        android:id="@+id/text_view_register"
+                    <Button
+                        android:id="@+id/btn_register"
                         android:layout_gravity="center_horizontal"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textAlignment="center"
                         android:onClick="@{(v) -> viewmodel.goToSignUp(v)}"
-                        android:text="Don't have an account.\nRegister Here"
+                        android:text="@string/signUp"
+                        android:textColor="@color/cardBackground"
+                        android:background="@color/colorBackground"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"/>
                 </LinearLayout>
 
             </RelativeLayout>

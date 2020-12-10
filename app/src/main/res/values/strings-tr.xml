@@ -4,9 +4,15 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="signIn">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed" translatable="false">Login Failed</string>
+    <string name="signUp">Üye Ol</string>
+    <string name="newUserSignup">Yeni Üye Girişi</string>
+    <string name="login">Giriş Yap</string>
+    <string name="email">Mail Adresi:</string>
+    <string name="password">Şifre</string>
+    <string name="accountLogin">Üye Girişi</string>
 </resources>
