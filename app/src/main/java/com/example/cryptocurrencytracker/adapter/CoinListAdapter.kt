@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptocurrencytracker.api.models.CoinItem
@@ -32,6 +33,30 @@ class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
             //Detail
         }
 
+    }
+    fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val queryString = constraint?.toString()?.toLowerCase()
+                val filterResults = Filter.FilterResults()
+                filterResults.values = if(queryString== null || queryString.isBlank()){
+                    Log.e("filterResults","empty"+coins)
+                   coins
+                }else{
+                    Log.e("filterResults","Not empty")
+                    coins.filter{
+                        it.name.toLowerCase().contains(queryString)
+                    }
+                }
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                coins = results?.values as ArrayList<CoinItem>
+                notifyDataSetChanged()
+            }
+
+        }
     }
     fun updateDataList(newDataList: List<CoinItem>){
         coins.clear()
