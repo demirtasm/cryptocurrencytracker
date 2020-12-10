@@ -1,4 +1,4 @@
-package com.example.cryptocurrencytracker.models
+package com.example.cryptocurrencytracker.api.models
 
 data class CoinItem(
     val id: String,

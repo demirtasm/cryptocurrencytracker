@@ -1,49 +1,55 @@
 package com.example.cryptocurrencytracker.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.cryptocurrencytracker.R
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import com.example.cryptocurrencytracker.databinding.ActivitySignUpBinding
+import com.example.cryptocurrencytracker.services.AuthInterface
+import com.example.cryptocurrencytracker.utils.startMainActivity
+import com.example.cryptocurrencytracker.viewmodel.AuthViewModel
+import com.example.cryptocurrencytracker.viewmodel.AuthViewModelProvider
+import kotlinx.android.synthetic.main.activity_login.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity(), AuthInterface, KodeinAware {
+
+    override val kodein by kodein()
+    private val provider: AuthViewModelProvider by instance()
+    private lateinit var viewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-        signUp()
+
+        val binding: ActivitySignUpBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        viewModel = ViewModelProvider(this, provider).get(AuthViewModel::class.java)
+        binding.viewmodel = viewModel
+        (viewModel).authListener = this
     }
-    fun signUp(){
-        btn_sign_up.setOnClickListener {
-            if(edt_mail.text.isNotEmpty() && edt_password.text.isNotEmpty() && edt_password_repeat.text.isNotEmpty()){
-                if(edt_password.text.toString().equals(edt_password_repeat.text.toString())){
-                    signUpCreate(edt_mail.text.toString(), edt_password.text.toString())
-                }
-            }
+
+    override fun onStarted() {
+        progressbar.visibility = View.VISIBLE
+        Intent(this, MainActivity::class.java).also {
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(it)
         }
     }
-    fun signUpCreate(mail: String, pass:String){
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(mail, pass)
-            .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
-                override fun onComplete(p0: Task<AuthResult>) {
-                    if(p0.isSuccessful){
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            "Üye olundu",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }else{
-                        Toast.makeText(
-                            applicationContext,
-                            "Something wrong: ${p0.exception?.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
 
-            })
+    override fun onSuccess() {
+        progressbar.visibility = View.GONE
+        startMainActivity()
+    }
+
+    override fun onFailure(message: String) {
+        progressbar.visibility = View.GONE
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cryptocurrencytracker.models.Coin
-import com.example.cryptocurrencytracker.models.CoinItem
+import com.example.cryptocurrencytracker.api.models.CoinItem
 import kotlinx.android.synthetic.main.coin_items.view.*
 
 class CoinListAdapter(allCoins: ArrayList<CoinItem>) :

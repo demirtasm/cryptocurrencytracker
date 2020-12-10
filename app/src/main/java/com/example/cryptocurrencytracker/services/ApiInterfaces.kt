@@ -1,6 +1,6 @@
 package com.example.cryptocurrencytracker.services
 
-import com.example.cryptocurrencytracker.models.Coin
+import com.example.cryptocurrencytracker.api.models.Coin
 import retrofit2.http.GET
 
 interface ApiInterfaces {
