@@ -1,13 +1,18 @@
 package com.example.cryptocurrencytracker.adapter
 
-import android.util.Log
+import android.content.Intent
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptocurrencytracker.api.models.CoinItem
+import com.example.cryptocurrencytracker.view.CoinDetailFragment
+import com.example.cryptocurrencytracker.view.CoinListFragment
+import com.example.cryptocurrencytracker.view.CoinListFragmentDirections
 import kotlinx.android.synthetic.main.coin_items.view.*
 
 class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
@@ -28,23 +33,24 @@ class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
 
     override fun onBindViewHolder(holder: CoinListHolder, position: Int) {
         holder.coinName.text = coins.get(position).name
-        holder.itemView.setOnClickListener{v->
-            Log.e("Click","Coins")
-            //Detail
+        holder.itemView.setOnClickListener { v ->
+            val coinDetailAction =
+                CoinListFragmentDirections.actionCoinListFragmentToCoinDetailFragment()
+          coinDetailAction.id = coins.get(position).id
+            Navigation.findNavController(v).navigate(coinDetailAction)
         }
 
     }
+
     fun getFilter(): Filter {
-        return object : Filter(){
+        return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val queryString = constraint?.toString()?.toLowerCase()
                 val filterResults = Filter.FilterResults()
-                filterResults.values = if(queryString== null || queryString.isBlank()){
-                    Log.e("filterResults","empty"+coins)
-                   coins
-                }else{
-                    Log.e("filterResults","Not empty")
-                    coins.filter{
+                filterResults.values = if (queryString == null || queryString.isBlank()) {
+                    coins
+                } else {
+                    coins.filter {
                         it.name.toLowerCase().contains(queryString)
                     }
                 }
@@ -58,11 +64,13 @@ class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
 
         }
     }
-    fun updateDataList(newDataList: List<CoinItem>){
+
+    fun updateDataList(newDataList: List<CoinItem>) {
         coins.clear()
         coins.addAll(newDataList)
         notifyDataSetChanged()
     }
+
     class CoinListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var coinViewList = itemView as CardView
         var coinName = coinViewList.tvTitle

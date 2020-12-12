@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:background="@color/colorBackground"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        tools:context=".ui.SignUpActivity">
+        tools:context=".view.SignUpActivity">
 
     <RelativeLayout
         android:id="@+id/signupLayout"

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".ui.auth.LoginActivity"
+        tools:context=".view.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
         <RelativeLayout

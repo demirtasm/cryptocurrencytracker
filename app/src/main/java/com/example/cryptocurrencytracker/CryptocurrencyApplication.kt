@@ -21,6 +21,5 @@ class CryptocurrencyApplication : Application(), KodeinAware {
         bind() from singleton { FirebaseUserRepository(instance()) }
         bind() from provider { AuthViewModelProvider(instance()) }
 
-
     }
 }

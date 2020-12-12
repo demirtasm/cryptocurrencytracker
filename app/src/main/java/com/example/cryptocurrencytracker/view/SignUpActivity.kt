@@ -1,4 +1,4 @@
-package com.example.cryptocurrencytracker.ui
+package com.example.cryptocurrencytracker.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cryptocurrencytracker.R
 import com.example.cryptocurrencytracker.databinding.ActivitySignUpBinding
@@ -15,6 +14,7 @@ import com.example.cryptocurrencytracker.utils.startMainActivity
 import com.example.cryptocurrencytracker.viewmodel.AuthViewModel
 import com.example.cryptocurrencytracker.viewmodel.AuthViewModelProvider
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity(), AuthInterface, KodeinAware {
 
     override fun onStarted() {
         progressbar.visibility = View.VISIBLE
-        Intent(this, MainActivity::class.java).also {
+        Intent(this, CoinListFragment::class.java).also {
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(it)
         }
@@ -45,7 +45,10 @@ class SignUpActivity : AppCompatActivity(), AuthInterface, KodeinAware {
 
     override fun onSuccess() {
         progressbar.visibility = View.GONE
-        startMainActivity()
+        //startMainActivity()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment, fragment)
+        fragmentTransaction.commit()
     }
 
     override fun onFailure(message: String) {

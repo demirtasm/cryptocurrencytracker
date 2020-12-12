@@ -5,8 +5,8 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.cryptocurrencytracker.api.repositories.FirebaseUserRepository
 import com.example.cryptocurrencytracker.services.AuthInterface
-import com.example.cryptocurrencytracker.ui.LoginActivity
-import com.example.cryptocurrencytracker.ui.SignUpActivity
+import com.example.cryptocurrencytracker.view.LoginActivity
+import com.example.cryptocurrencytracker.view.SignUpActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
