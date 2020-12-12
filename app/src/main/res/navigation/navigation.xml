@@ -8,7 +8,9 @@
         android:label="CoinListFragment" >
         <action
             android:id="@+id/action_coinListFragment_to_coinDetailFragment"
-            app:destination="@id/coinDetailFragment" />
+            app:destination="@id/coinDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <argument android:name="id"
             android:defaultValue="undefined"
             app:argType="string" />
@@ -19,7 +21,9 @@
         android:label="CoinDetailFragment" >
         <action
             android:id="@+id/action_coinDetailFragment_to_coinListFragment"
-            app:destination="@id/coinListFragment" />
+            app:destination="@id/coinListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <argument android:name="id"
             android:defaultValue="undefined"
             app:argType="string" />

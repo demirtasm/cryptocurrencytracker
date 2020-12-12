@@ -12,7 +12,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.CoinListFragment">
+        tools:context=".view.CoinListFragment"
+        android:background="#f4f7f7">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

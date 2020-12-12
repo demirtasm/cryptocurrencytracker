@@ -5,5 +5,7 @@ data class DetailCoin(
     val id: String,
     val image: Image,
     val name: String,
-    val symbol: String
+    val symbol: String,
+    val market_data: MarketData,
+    val description: Descriptions
 )
