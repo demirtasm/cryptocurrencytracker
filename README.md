@@ -1,13 +1,15 @@
 # cryptocurrencytracker
 
 
-*MVVM
+*Kotlin
 
-*Navigation Architecture
+*MVVM
 
 *Retrofit
 
 *ROOM
+
+*Navigation Architecture
 
 *Kodein Dependency Injection
 
@@ -15,4 +17,4 @@
 
 *Live Data
 
-*Kotlin
+
