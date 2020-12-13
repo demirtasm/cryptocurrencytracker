@@ -13,6 +13,7 @@ import com.example.cryptocurrencytracker.api.models.Coin
 import com.example.cryptocurrencytracker.api.models.CoinItem
 import com.example.cryptocurrencytracker.api.models.DetailCoin
 import com.example.cryptocurrencytracker.databinding.FragmentCoinDetailBinding
+import com.example.cryptocurrencytracker.viewmodel.CoinDetailViewModel
 import com.example.cryptocurrencytracker.viewmodel.CoinListViewModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.android.synthetic.main.fragment_coin_detail.*
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 
 class CoinDetailFragment : Fragment() {
 
-    private val viewModel: CoinListViewModel by viewModels()
+    private val viewModel: CoinDetailViewModel by viewModels()
     private lateinit var binding: FragmentCoinDetailBinding
     private var id = "undefined"
 

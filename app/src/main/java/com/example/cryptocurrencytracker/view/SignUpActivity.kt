@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cryptocurrencytracker.R
 import com.example.cryptocurrencytracker.databinding.ActivitySignUpBinding
 import com.example.cryptocurrencytracker.services.AuthInterface
-import com.example.cryptocurrencytracker.utils.startMainActivity
 import com.example.cryptocurrencytracker.viewmodel.AuthViewModel
-import com.example.cryptocurrencytracker.viewmodel.AuthViewModelProvider
+import com.example.cryptocurrencytracker.viewmodel.AuthViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
@@ -22,7 +21,7 @@ import org.kodein.di.generic.instance
 class SignUpActivity : AppCompatActivity(), AuthInterface, KodeinAware {
 
     override val kodein by kodein()
-    private val provider: AuthViewModelProvider by instance()
+    private val provider: AuthViewModelFactory by instance()
     private lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

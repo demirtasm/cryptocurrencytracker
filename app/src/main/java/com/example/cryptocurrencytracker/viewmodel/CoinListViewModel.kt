@@ -1,26 +1,18 @@
 package com.example.cryptocurrencytracker.viewmodel
 
+import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.cryptocurrencytracker.api.models.Coin
-import com.example.cryptocurrencytracker.api.models.DetailCoin
+import androidx.lifecycle.*
+import com.example.cryptocurrencytracker.api.data.entitiy.CoinListEntity
 import com.example.cryptocurrencytracker.services.RetrofitInstance
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class CoinListViewModel : ViewModel() {
-    private var _coins = MutableLiveData<Coin>()
-    val coins: LiveData<Coin>
+class CoinListViewModel(application: Application) : AndroidViewModel(application) {
+    private val context = getApplication<Application>().applicationContext
+    private var _coins = MutableLiveData<List<CoinListEntity>>()
+    val coins: LiveData<List<CoinListEntity>>
         get() = _coins
-
-    private var detailCoins = MutableLiveData<DetailCoin>()
-    val detail: LiveData<DetailCoin>
-        get() = detailCoins
 
     fun getData() {
         viewModelScope.launch {
@@ -30,18 +22,5 @@ class CoinListViewModel : ViewModel() {
                 Log.e(TAG, "${e.message}")
             }
         }
-    }
-
-    fun getDetail(id: String) {
-        viewModelScope.launch {
-            try {
-                detailCoins.value = RetrofitInstance.retrofitInstance.getDetailCoin(id)
-            } catch (e: Exception) {
-                Log.e(TAG, "${e.message}")
-            }
-        }
-    }
-    fun addingFavourite(){
-
     }
 }

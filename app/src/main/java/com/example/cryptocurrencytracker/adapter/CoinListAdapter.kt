@@ -1,6 +1,5 @@
 package com.example.cryptocurrencytracker.adapter
 
-import android.content.Intent
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +8,15 @@ import android.widget.Filter
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cryptocurrencytracker.api.data.entitiy.CoinListEntity
+import com.example.cryptocurrencytracker.api.models.Coin
 import com.example.cryptocurrencytracker.api.models.CoinItem
 import com.example.cryptocurrencytracker.view.CoinDetailFragment
 import com.example.cryptocurrencytracker.view.CoinListFragment
 import com.example.cryptocurrencytracker.view.CoinListFragmentDirections
 import kotlinx.android.synthetic.main.coin_items.view.*
 
-class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
+class CoinListAdapter(allCoins: ArrayList<CoinListEntity>) :
     RecyclerView.Adapter<CoinListAdapter.CoinListHolder>() {
 
     var coins = allCoins
@@ -36,7 +37,7 @@ class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
         holder.itemView.setOnClickListener { v ->
             val coinDetailAction =
                 CoinListFragmentDirections.actionCoinListFragmentToCoinDetailFragment()
-          coinDetailAction.id = coins.get(position).id
+          coinDetailAction.id = coins.get(position).id!!
             Navigation.findNavController(v).navigate(coinDetailAction)
         }
 
@@ -51,21 +52,21 @@ class CoinListAdapter(allCoins: ArrayList<CoinItem>) :
                     coins
                 } else {
                     coins.filter {
-                        it.name.toLowerCase().contains(queryString)
+                        it.name?.toLowerCase()?.contains(queryString)!!
                     }
                 }
                 return filterResults
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                coins = results?.values as ArrayList<CoinItem>
+                coins = results?.values as ArrayList<CoinListEntity>
                 notifyDataSetChanged()
             }
 
         }
     }
 
-    fun updateDataList(newDataList: List<CoinItem>) {
+    fun updateDataList(newDataList: List<CoinListEntity>) {
         coins.clear()
         coins.addAll(newDataList)
         notifyDataSetChanged()
