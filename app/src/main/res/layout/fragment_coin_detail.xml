@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:layout_margin="15dp"
+            android:onClick="@{()-> viewmodel.addingFavourite()}"
             app:layout_anchorGravity="bottom|end"
             app:layout_anchor="@id/app_bar"
             app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
