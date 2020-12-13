@@ -5,6 +5,8 @@
 
 *Navigation Architecture
 
+*Retrofit
+
 *ROOM
 
 *Kodein Dependency Injection
