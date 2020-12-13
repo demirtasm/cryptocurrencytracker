@@ -9,6 +9,8 @@
 
 *ROOM
 
+*Firebase
+
 *Navigation Architecture
 
 *Kodein Dependency Injection
